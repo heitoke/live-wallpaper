@@ -1,0 +1,20 @@
+.ui-button {
+    cursor: pointer;
+    width: 100%;
+    padding: 8px;
+    color: var(--text-primary);
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+    transition: .2s, transform 0s;
+
+    &:hover {
+        background-color: #ffffff55;
+    }
+
+    &:active {
+        transform: scale(.95);
+    }
+}

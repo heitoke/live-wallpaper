@@ -1,4 +1,4 @@
-import type { Window } from '../classes/window';
+import type { Window } from '~/classes/window';
 
 
 class Windows {

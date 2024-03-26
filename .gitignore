@@ -1,6 +1,6 @@
 .vscode
-build
 node_modules
 package-lock.json
 yarn.lock
 dist
+build-app

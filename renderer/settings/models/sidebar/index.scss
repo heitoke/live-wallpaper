@@ -1,0 +1,40 @@
+main > .sidebar {
+    display: flex;
+    margin-right: 12px;
+    min-width: 215px;
+    height: 100%;
+    flex-direction: column;
+    grid-area: sidebar;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        li {
+            cursor: pointer;
+            display: flex;
+            padding: 8px 12px;
+            border-radius: 10px;
+            align-items: center;
+            transition: .2s;
+
+            &:hover,
+            &.active {
+                background-color: #ffffff35;
+            }
+
+            div {
+                margin-right: 8px;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background-color: #ffffff35;
+            }
+
+            span {
+                font-size: 15px;
+            }
+        }
+    }
+}

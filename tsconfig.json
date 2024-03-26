@@ -1,16 +1,24 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "module": "CommonJS",
+        "module": "ESNext",
+        "lib": ["ESNext", "DOM"],
+        "strict": true,
         "esModuleInterop": true,
-        "moduleResolution": "Node",
-        "baseUrl": "src",
+        "moduleResolution": "Bundler",
+        "baseUrl": ".",
         "outDir": "dist",
         "paths": {
             "*": ["node_modules/*"],
-        }
-    },
-    "include": [
-        "src/**/*"
-    ]
+            "~/*": ["src/*"],
+            "@/*": ["renderer/*"]
+        },
+        "jsx": "react-jsx",
+        "jsxImportSource": "hywer",
+        "types": [
+            "./global.d.ts",
+            "./renderer/index.d.ts",
+            "electron-vite/node"
+        ]
+    }
 }

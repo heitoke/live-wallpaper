@@ -1,12 +1,17 @@
-import { BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
+import path from 'node:path';
 
 // * Classes
-import { Window } from '../classes/window';
+import { Window } from '~/classes/window';
+
+// * Libs
+import { getDirname } from '~/utils/path';
 
 
 export class WallpaperWindow extends Window {
     constructor() {
         super('wallpaper-screen');
+        
 
         this.win = new BrowserWindow({
             type: 'desktop',
@@ -15,26 +20,37 @@ export class WallpaperWindow extends Window {
             y: 0,
             width: 1440,
             height: 900,
-            backgroundColor: '#7579ff',
+            titleBarStyle: 'hidden',
             roundedCorners: false,
             hasShadow: false,
-            skipTaskbar: true
+            skipTaskbar: true,
+            enableLargerThanScreen: true,
+            transparent: true,
+            webPreferences: {
+                sandbox: true,
+                webviewTag: true,
+                preload: path.join(getDirname(), './preloads/wallpaper.js')
+            }
         });
-
-        this.win.on('ready-to-show', () => {
-            this.win.show();
-        });
-
-        this.setWallpaper('https://cdpn.io/Metty/fullpage/PogmqNW');
-        this.win.setSkipTaskbar(true);
-        this.win.setIgnoreMouseEvents(false);
         
-        this.win.webContents.addListener('dom-ready', () => {
-            this.win.webContents.insertCSS(`body > .referer-warning { display: none; }`);
+        if (!app.isPackaged && process.env['ELECTRON_RENDERER_URL']) {
+            this.win.loadURL(`${process.env['ELECTRON_RENDERER_URL']}/wallpaper.html`);
+        } else {
+            this.win.loadURL('live-wallpaper://web/wallpaper.html');
+        }
+
+        this.win.setSkipTaskbar(true);
+        this.win.setIgnoreMouseEvents(true);
+
+        this.win.webContents.once('dom-ready', () => {
+            this.setWallpaper('website', 'https://cdpn.io/Metty/fullpage/PogmqNW');
         });
     }
 
-    setWallpaper(url: string) {
-        this.win.loadURL(url);
+    setWallpaper(type: 'image' | 'website' | 'video', url: string) {
+        this.win.webContents.send('wallpapers:set', {
+            type: type,
+            url
+        });
     }
 }

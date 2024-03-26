@@ -1,21 +1,28 @@
 {
-  "name": "live-wallpaper",
-  "version": "0.0.1",
+  "name": "everglow",
+  "version": "0.0.2",
   "description": "Live Wallpaper",
   "main": "dist/index.js",
+  "license": "ISC",
+  "type": "module",
   "author": {
     "name": "heito",
     "email": "me@heito.xyz",
     "url": "https://heito.xyz"
   },
   "scripts": {
-    "start": "export NODE_ENV=dev && npm run build-electron && electron .",
-    "build-electron": "tsc"
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "build:package": "npm run build && node ./build.js",
+    "preview": "electron-vite preview"
   },
-  "license": "ISC",
   "devDependencies": {
     "electron": "^29.1.5",
     "electron-builder": "^24.13.3",
+    "electron-vite": "^2.1.0",
+    "glob": "^10.3.10",
+    "hywer": "^0.0.7",
+    "sass": "^1.72.0",
     "typescript": "^5.4.3"
   }
 }
