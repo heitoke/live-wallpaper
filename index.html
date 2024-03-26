@@ -9,5 +9,40 @@
     <h1>Everglow - Live Wallpaper</h1>
 
     <p>Hello?</p>
+
+    <h3></h3>
+    <ul></ul>
+
+    <script>
+        const title = document.querySelector('h3');
+        const list = document.querySelector('ul');
+
+        async function fetchListWallpapers() {
+            const res = await fetch('https://wallpaper.heito.workers.dev/');
+
+            if (!res.ok) return console.log(`WTF?`);
+
+            /** @type { Array<{ id: string; label: string; type: 'image' | 'video' | 'website'; previewUrl: string; url: string; tags: Array<string>; created_at: string; }> } */
+            const wallpapers = await res.json();
+
+            for (const wallpaper of wallpapers) {
+                const li = document.createElement('li');
+
+                li.id = wallpaper.id;
+
+                li.innerHTML = `
+                <h3>${wallpaper.label} (${wallpaper.id}) - ${wallpaper.type}</h3>
+                <a target="_blank" href=${wallpaper.url}>Go?</a>
+                <p>${wallpaper.created_at}</p>
+                `;
+
+                list.appendChild(li);
+            }
+
+            title.textContent = `Total wallpapers: ${wallpapers.length}`;
+        }
+
+        fetchListWallpapers();
+    </script>
 </body>
 </html>
