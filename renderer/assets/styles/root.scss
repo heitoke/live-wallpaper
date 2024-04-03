@@ -3,6 +3,7 @@
 // * UI Components
 @import './ui/button.scss';
 @import './ui/select.scss';
+@import './ui/input.scss';
 
 
 :root {
@@ -23,6 +24,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     // -webkit-app-region: drag;
 }
 

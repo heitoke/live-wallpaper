@@ -8,9 +8,15 @@ interface IPC {
 }
 
 interface WallpaperAPI {
+    appFolder: string;
     versions: Record<'node' | 'chrome' | 'electron', string>;
     os: Record<'arch' | 'platform', string>;
     ipc: IPC;
 }
 
 declare const wallpaperAPI: WallpaperAPI;
+
+
+interface EverglowDisplay extends Electron.Display {
+    wallpaperId: string | null;
+}

@@ -26,6 +26,11 @@ const buttons = [
         name: 'playlists',
         icon: '',
         label: 'Playlists'
+    },
+    {
+        name: 'installed',
+        icon: '',
+        label: 'Installed'
     }
 ];
 

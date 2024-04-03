@@ -44,7 +44,7 @@ export default defineConfig({
                     format: 'cjs',
                     entryFileNames() {
                         return '[name].js';
-                    },
+                    }
                 }
             }
         }

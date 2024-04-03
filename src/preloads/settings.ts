@@ -1,6 +1,8 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { app, contextBridge, ipcRenderer } from 'electron';
+
 
 contextBridge.exposeInMainWorld('wallpaperAPI', {
+    appFolder: '',
     versions: {
         node: process.versions.node,
         chrome: process.versions.chrome,

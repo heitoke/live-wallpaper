@@ -1,28 +1,34 @@
-import { app, protocol, net, screen } from 'electron';
-import url from 'url';
-import path from 'path';
+import { app, screen } from 'electron';
 
 // * Windows
 import { WallpaperWindow } from '~/windows/wallpaper';
 
 // * Modules
+import { initProtocolEverglow } from '~/modules/protocol';
 import { createAppTray } from '~/modules/tray';
 import { $windows } from '~/modules/windows';
+
+
+app.commandLine.appendSwitch('enable-features', 'VaapiVideoDecoder');
+app.commandLine.appendSwitch('site-isolation-trial-opt-out');
+app.commandLine.appendSwitch('enable-gpu-rasterization');
 
 
 if (!app.requestSingleInstanceLock()) {
 	app.quit();
 }
 
+
+
+
 function createScreenWindows() {
     const displays = screen.getAllDisplays();
 
-    for (let i = 0; i < displays.length; i++) {
-        const { bounds } = displays[i];
-
-        const { win } = $windows.create(`display:${i}`, WallpaperWindow, false);
+    for (const { id, bounds } of displays) {
+        const win = $windows.create(`display:${id}`, WallpaperWindow, false) as WallpaperWindow;
         
-        win.setBounds(bounds);
+        win.setDisplayId(id);
+        win.win.setBounds(bounds);
     }
 }
 
@@ -33,12 +39,7 @@ app.whenReady().then(() => {
     
     app.dock.hide();
 
-    protocol.handle('live-wallpaper', (request) => {
-        const filePath = request.url.slice(17);
-        const dirname = path.dirname(url.fileURLToPath(import.meta.url));
-        
-        return net.fetch(url.pathToFileURL(path.join(dirname, filePath)).toString());
-    });
+    initProtocolEverglow();
 
     createScreenWindows();
     createAppTray();

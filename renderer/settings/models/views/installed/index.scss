@@ -1,0 +1,22 @@
+.view.installed {
+    display: flex;
+    max-height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+
+    .bar {
+        display: flex;
+        margin-bottom: 12px;
+        align-items: center;
+        justify-content: flex-start;
+
+        .ui-select {
+            width: max-content;
+            padding: 4px 8px;
+        }
+    }
+
+    .list-wallpapers {
+        overflow-x: hidden;
+    }
+}

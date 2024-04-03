@@ -40,23 +40,23 @@ function createTrayMenu() {
         },
         ...screen.getAllDisplays().map(({ label }, i) => {
             return {
-                type: 'submenu',
+                // type: 'submenu',
                 label,
-                submenu: wallpapers.map((url, idx) => {
-                    return {
-                        type: 'radio',  
-                        label: `Wallpaper ${idx + 1}`,
-                        sublabel: url,
-                        checked: idx === 0,
-                        click: () => {
-                            const winWallpaper = $windows.get<WallpaperWindow>(`display:${i}`);
+                // submenu: wallpapers.map((url, idx) => {
+                //     return {
+                //         type: 'radio',  
+                //         label: `Wallpaper ${idx + 1}`,
+                //         sublabel: url,
+                //         checked: idx === 0,
+                //         click: () => {
+                //             const winWallpaper = $windows.get<WallpaperWindow>(`display:${i}`);
             
-                            if (!winWallpaper) return;
+                //             if (!winWallpaper) return;
             
-                            winWallpaper.setWallpaper('website', url);
-                        }
-                    }
-                })
+                //             winWallpaper.setWallpaper('website', url);
+                //         }
+                //     }
+                // })
             } as Electron.MenuItemConstructorOptions;
         }),
         { type: 'separator' },

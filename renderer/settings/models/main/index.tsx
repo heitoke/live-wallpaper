@@ -10,6 +10,7 @@ import { Sidebar } from '../sidebar';
 import { LibraryView } from '../views/library';
 import { FavoritesView } from '../views/favorites';
 import { PlaylistsView } from '../views/playlists';
+import { InstalledView } from '../views/installed';
 
 
 export const Main = () => {
@@ -27,6 +28,8 @@ export const Main = () => {
                         return FavoritesView();
                     case 'playlists':
                         return PlaylistsView();
+                    case 'installed':
+                        return InstalledView();
 
                     default:
                         return <div>A?</div>;

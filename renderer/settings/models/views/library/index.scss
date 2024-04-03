@@ -1,114 +1,123 @@
-.view.library {
-    ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
-        gap: 12px;
+.view.library {}
+
+.wallpaper-preview {
+    border-radius: 10px;
+    transition: .2s;
+    overflow: hidden;
+
+    img, video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+ul.list-wallpapers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    gap: 12px;
+    
+    .card {
+        cursor: pointer;
+        width: 100%;
+        height: 169px;
+        position: relative;
+        border-radius: 10px;
+        background-color: #ffffff15;
+        transition: .2s, transform 0s;
+        box-sizing: border-box;
+        transform: translateZ(0);
+        overflow: hidden;
         
-        .card {
-            cursor: pointer;
-            width: 100%;
-            height: 169px;
-            position: relative;
-            border-radius: 10px;
-            background-color: #ffffff15;
-            transition: .2s, transform 0s;
-            box-sizing: border-box;
-            transform: translateZ(0);
-            overflow: hidden;
-            
-            &:hover {
-                .preview {
-                    transform: translateY(38px);
-                }
+        &:hover {
+            .wallpaper-preview {
+                transform: translateY(38px);
+            }
 
-                .header {
-                    .name, .type {
-                        opacity: 1;
-                    }
-                }
-
-                .menu {
-                    bottom: 0;
+            .header {
+                .name, .type {
                     opacity: 1;
                 }
             }
 
-            .preview {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                border-radius: 10px;
-                background-size: cover;
-                background-position: center;
-                transition: .2s;
-                z-index: -1;
-            }
-
-            .header {
-                display: flex;
-                padding: 8px;
-                max-width: 100%;
-                width: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                align-items: flex-start;
-                justify-content: space-between;
-                box-sizing: border-box;
-                transition: .2s;
-                z-index: 2;
-
-                .name {
-                    max-width: 100%;
-                    min-width: 0;
-                    position: relative;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    transition: .2s;
-                    overflow: hidden;
-                    opacity: 0;
-                }
-
-                .type {
-                    padding: 4px 8px;
-                    font-size: 10px;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    border-radius: 10px;
-                    border: 1px solid var(--text-secondary);
-                    backdrop-filter: blur(5px);
-                    opacity: .5;
-                }
-            }
-
-
             .menu {
-                display: flex;
-                margin: 4px;
-                padding: 8px;
-                width: calc(100% - 8px);
-                position: absolute;
-                left: 0;
-                bottom: -100%;
+                bottom: 0;
+                opacity: 1;
+            }
+        }
+
+        .wallpaper-preview {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .header {
+            display: flex;
+            padding: 8px;
+            max-width: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            align-items: flex-start;
+            justify-content: space-between;
+            box-sizing: border-box;
+            transition: .2s;
+            z-index: 2;
+
+            .name {
+                max-width: 100%;
+                min-width: 0;
+                position: relative;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                transition: .2s;
+                overflow: hidden;
+                opacity: 0;
+            }
+
+            .type {
+                padding: 4px 8px;
+                font-size: 10px;
+                font-weight: 700;
+                text-transform: uppercase;
                 border-radius: 10px;
                 border: 1px solid var(--text-secondary);
-                justify-content: space-between;
                 backdrop-filter: blur(5px);
-                box-sizing: border-box;
-                transition: .2s;
-                opacity: 0;
-                z-index: 2;
-                gap: 8px;
+                opacity: .5;
+            }
+        }
 
-                button {
-                    cursor: pointer;
-                    padding: 4px 8px;
-                    border-radius: 7px;
-                    border: none;
-                    transition: .2s;
-                }
+
+        .menu {
+            display: flex;
+            margin: 4px;
+            padding: 8px;
+            width: calc(100% - 8px);
+            position: absolute;
+            left: 0;
+            bottom: -100%;
+            border-radius: 10px;
+            border: 1px solid var(--text-secondary);
+            justify-content: space-between;
+            backdrop-filter: blur(5px);
+            box-sizing: border-box;
+            transition: .2s;
+            opacity: 0;
+            z-index: 2;
+            gap: 8px;
+
+            button {
+                cursor: pointer;
+                padding: 4px 8px;
+                border-radius: 7px;
+                border: none;
+                transition: .2s;
             }
         }
     }

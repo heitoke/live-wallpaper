@@ -37,12 +37,6 @@ export class PreviewWindow extends Window {
             }
             `);
         });
-
-        this.win.on('close', e => {
-            e.preventDefault();
-
-            this.win.hide();
-        });
     }
 
     setWallpaper(url: string) {
